@@ -39,6 +39,8 @@ Session.vim
 # temporary
 .netrwhist
 *~
+bundle/*
+!bundle/Vundle.vim/
 # auto-generated tag files
 tags
 

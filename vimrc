@@ -1,10 +1,16 @@
 set nocompatible              " be iMproved, required
-set linespace=10
+filetype off
 
-execute pathogen#infect()
-
-syntax on
-color dracula
+" ----------------------------------------------------------------------------
+"  " Plugins
+" ----------------------------------------------------------------------------
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'lyuts/vim-rtags'
+Plugin 'scrooloose/nerdtree'
+Plugin 'SirVer/ultisnips'
+call vundle#end()
 filetype plugin indent on
 
 " ----------------------------------------------------------------------------
@@ -14,7 +20,7 @@ filetype plugin indent on
 set tabstop=4		" show existing tab with 4 spaces width
 set shiftwidth=4	" when indenting with '>', use 4 spaces width
 set expandtab		" On pressing tab, insert 4 spaces
-set paste           " disable automated indentation
+"set paste           " disable automated indentation
 
 " ----------------------------------------------------------------------------
 "  Backups
@@ -49,6 +55,9 @@ set guifont=Droid\Sans\Mono:h13
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileencoding=utf-8
+
+syntax on
+color dracula
 
 "set background=dark
 "let g:solarized_termcolors=256
