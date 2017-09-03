@@ -100,3 +100,6 @@ else
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" map for clang-format
+map <C-K> :pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
+imap <C-K> <c-o>:pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
