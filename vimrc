@@ -4,12 +4,13 @@ filetype off
 " ----------------------------------------------------------------------------
 "  " Plugins
 " ----------------------------------------------------------------------------
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'lyuts/vim-rtags'
 Plugin 'scrooloose/nerdtree'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 call vundle#end()
 filetype plugin indent on
 
@@ -92,3 +93,5 @@ endif
 " map for clang-format
 map <C-K> :pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
 imap <C-K> <c-o>:pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
+
+set autowrite
