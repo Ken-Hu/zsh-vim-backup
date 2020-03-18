@@ -95,3 +95,4 @@ map <C-K> :pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
 imap <C-K> <c-o>:pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
 
 set autowrite
+autocmd BufWritePre * :%s/\s\+$//e
