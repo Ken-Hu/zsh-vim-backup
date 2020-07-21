@@ -5,14 +5,12 @@ filetype off
 "  " Plugins
 " ----------------------------------------------------------------------------
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'lyuts/vim-rtags'
-Plugin 'scrooloose/nerdtree'
-"Plugin 'SirVer/ultisnips'
-call vundle#end()
-filetype plugin indent on
+call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+call plug#end()
 
 " ----------------------------------------------------------------------------
 "  " Text Formatting
@@ -58,7 +56,9 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
 set fileencoding=utf-8
 
 syntax on
-color dracula
+"color dracula
+colorscheme gruvbox
+set background=dark
 
 " ----------------------------------------------------------------------------
 "  alerts
@@ -66,20 +66,39 @@ color dracula
 "
 set visualbell
 set noerrorbells
+let g:coc_disable_startup_warning = 1
 
 " ----------------------------------------------------------------------------
 "  key map
 " ----------------------------------------------------------------------------
 inoremap <C-c> <ESC>`^
-let mapleader=","
-nmap <leader><space> :noh<cr>  
+let mapleader=" "
+nmap <leader><space> :noh<cr>
 
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
+" Split window
+nnoremap <leader>v :wincmd v<CR>
+nnoremap <leader>s :wincmd s<CR>
 
-map <C-n> :NERDTreeToggle<CR>
+" Navigate window
+" Alt + h/l/j/k
+nnoremap <C-h> <c-w>h
+nnoremap <C-l> <c-w>l
+nnoremap <C-j> <c-w>j
+nnoremap <C-k> <c-w>k
+
+" Zoom in/out
+nnoremap <leader>1 <c-w>_ \| <c-w>\|
+nnoremap <leader>zo <c-w>=
+
+nnoremap <leader>cs :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>rg :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>gf :GFiles<CR>
+
+nmap <leader>cd <Plug>(coc-definition)
+nmap <leader>ci <Plug>(coc-implementation)
+nmap <leader>ct <Plug>(coc-type-definition)
+nmap <leader>cr <Plug>(coc-references)
 
 " fix cursor shape under tmux
 if exists('$TMUX')
@@ -91,8 +110,8 @@ else
 endif
 
 " map for clang-format
-map <C-K> :pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
-imap <C-K> <c-o>:pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
+"map <C-K> :pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
+"imap <C-K> <c-o>:pyf /usr/local/opt/llvm/share/clang/clang-format.py<cr>
 
 set autowrite
 autocmd BufWritePre * :%s/\s\+$//e
