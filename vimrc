@@ -36,6 +36,7 @@ set directory=~/.vim/swaps,~/tmp,.      " keep swp files under ~/.vim/swaps
 " ----------------------------------------------------------------------------
 "  UI
 " ----------------------------------------------------------------------------
+
 set ruler                   " cord of cursor
 set nu                      " display the line number
 set relativenumber          " display relative line number
@@ -63,7 +64,7 @@ set background=dark
 " ----------------------------------------------------------------------------
 "  alerts
 " ----------------------------------------------------------------------------
-"
+
 set visualbell
 set noerrorbells
 let g:coc_disable_startup_warning = 1
@@ -71,16 +72,18 @@ let g:coc_disable_startup_warning = 1
 " ----------------------------------------------------------------------------
 "  key map
 " ----------------------------------------------------------------------------
-inoremap <C-c> <ESC>`^
+
+"inoremap <C-c> <ESC>
+
 let mapleader=" "
 nmap <leader><space> :noh<cr>
 
 " Split window
+" Or just use the built-in Ctrl-w s/v
 nnoremap <leader>v :wincmd v<CR>
 nnoremap <leader>s :wincmd s<CR>
 
-" Navigate window
-" Alt + h/l/j/k
+" Navigate window, Ctrl + h/l/j/k
 nnoremap <C-h> <c-w>h
 nnoremap <C-l> <c-w>l
 nnoremap <C-j> <c-w>j
@@ -90,10 +93,18 @@ nnoremap <C-k> <c-w>k
 nnoremap <leader>1 <c-w>_ \| <c-w>\|
 nnoremap <leader>zo <c-w>=
 
+" Search
 nnoremap <leader>cs :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>rg :Rg <C-R>=expand("<cword>")<CR><CR>
+
+" Files
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>gf :GFiles<CR>
+nnoremap <Leader>fz :FZF<space>
+nnoremap <leader>bf :buffers<CR>:buffer<space>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+
+nnoremap <Leader><CR> :source ~/.vim/vimrc<CR>
 
 nmap <leader>cd <Plug>(coc-definition)
 nmap <leader>ci <Plug>(coc-implementation)
