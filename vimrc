@@ -94,8 +94,10 @@ nnoremap <leader>1 <c-w>_ \| <c-w>\|
 nnoremap <leader>zo <c-w>=
 
 " Search
-nnoremap <leader>cs :CocSearch <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>rg :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>csw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>cs :CocSearch<space>
+nnoremap <leader>rgw :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>rg :RG <CR>
 
 " Files
 nnoremap <Leader>f :Files<CR>
@@ -126,3 +128,13 @@ endif
 
 set autowrite
 autocmd BufWritePre * :%s/\s\+$//e
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg -i --column --line-number --no-heading --color=always --smart-case -- %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
